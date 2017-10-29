@@ -1,7 +1,6 @@
 'use strict;'
 
 module.exports = (options, app) => {
-  console.log('app', app.loggers);
   return async(ctx, next) => {
     const source = ctx.get('user-agent');
     const match = options.ua.some(ua => ua.test(source));
