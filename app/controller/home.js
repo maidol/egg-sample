@@ -2,8 +2,11 @@
 
 module.exports = app => {
   class HomeController extends app.Controller {
-    async index() {
-      const ctx = this.ctx;
+    async index(ctx) {
+      // const ctx = this.ctx;
+      // ctx.logger.info('info');
+      // ctx.coreLogger.info('info');
+      this.logger.info('index');
       ctx.body = 'hello world';
     }
   }
