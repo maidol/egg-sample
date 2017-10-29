@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "dev": "egg-bin dev --port 7001",
     "test": "egg-bin test",
-    "dev": "egg-bin dev"
+    "cov": "egg-bin cov",
+    "debug": "egg-bin debug"
   },
   "author": "",
   "license": "ISC",

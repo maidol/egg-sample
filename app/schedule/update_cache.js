@@ -1,5 +1,6 @@
 'use strict;'
 
+const debug = require('debug')('update_cache');
 const Subscription = require('egg').Subscription;
 module.exports = app => {
   return class UpdateCache extends Subscription {
@@ -17,8 +18,10 @@ module.exports = app => {
       //   dataType: 'json',
       // });
       const res = await Promise.resolve({ data: Date.now() });
-      ctx.app.cache = res.data;
-      console.log(app.cache);
+      ctx.app.cache = res;
+      // ctx.logger.debug('UpdateCache', app.cache);
+      this.logger.debug('UpdateCache', app.cache);
+      debug('UpdateCache', app.cache);
     }
   }
 }

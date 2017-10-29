@@ -1,7 +1,6 @@
 'use strict;'
 
 module.exports = {
-  proxy(k, v) {
-    
+  mockXX(k, v) {
   }
 };

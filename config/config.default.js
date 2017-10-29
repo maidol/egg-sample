@@ -34,6 +34,8 @@ module.exports = app => {
     },
     logger: {
       // dir: require('path').join(app.baseDir, 'my/logs')
+      level: 'info',
+      consoleLevel: 'info'
     },
   }
 }
