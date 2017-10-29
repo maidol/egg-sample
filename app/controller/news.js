@@ -1,3 +1,5 @@
+'use strict;'
+
 module.exports = app => {
   class NewsController extends app.Controller {
     async list() {

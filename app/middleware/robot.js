@@ -1,3 +1,5 @@
+'use strict;'
+
 module.exports = (options, app) => {
   console.log('app', app.loggers);
   return async(ctx, next) => {

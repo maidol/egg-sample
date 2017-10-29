@@ -1,3 +1,5 @@
+'use strict;'
+
 const assert = require('assert');
 const mock = require('egg-mock');
 describe('test/app/middleware/robot.test.js', () => {
