@@ -3,6 +3,7 @@
 module.exports = app =>{
   class NewsService extends app.Service {
     async list(page = 1) {
+      this.logger.info('service list');
       const ctx = this.ctx;
       const { serverUrl, pageSize } = app.config.news;
       const { data: idList } = await ctx.curl(`${serverUrl}/topstorie.json`, { data: { 

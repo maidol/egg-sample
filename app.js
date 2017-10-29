@@ -2,6 +2,9 @@
 
 module.exports = app => {
   app.logger.info('running ...', app.config.env, app.baseDir);
+  app.beforeStart(async() => {
+    
+  });
   // app.coreLogger.info('running ...', app.config.env);
   app.cache = {
     name: 'cache'

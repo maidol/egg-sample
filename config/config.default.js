@@ -4,7 +4,7 @@ module.exports = app => {
   return {
     keys: '123456',
     security: {
-      csrf: true
+      csrf: false
     },
     view: {
       defaultViewEngine: 'nunjucks',

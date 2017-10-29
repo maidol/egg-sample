@@ -4,7 +4,7 @@
 ### - Config { appMiddleware, coreMiddleware }
 ### - Context { app, logger, coreLogger, service, request, response, helper }
 ### - Controller { ctx, app, config, logger }
-### - Service { ctx, app, config, logger }
+### - Service { ctx, app, config, logger, service }
 ### - Logger
 
 ## 环境变量 NODE_ENV 
