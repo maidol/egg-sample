@@ -50,6 +50,7 @@ $
 $ # 支持 mocha 的参数，如 grep / require 等
 $ npm test -- -t 30000 --grep="should GET"
 ```
+### - 执行顺序。每个用例(describe)会按 before -> beforeEach -> it -> afterEach -> after 的顺序执行，而且可以定义多个
 ##  代码覆盖率
 ------
 ### - egg-bin 已经内置了 [nyc](https://github.com/istanbuljs/nyc) 来支持单元测试自动生成代码覆盖率报告
