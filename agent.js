@@ -1,3 +1,12 @@
 'use strict;'
 
-module.exports = app => { }
+module.exports = agent => {
+  // 在这里写你的初始化逻辑
+  // 也可以通过 messenger 对象发送消息给 App Worker
+  // 但需要等待 App Worker 启动成功后才能发送，不然很可能丢失
+  agent.messenger.on('egg-ready', () => {
+    agent.logger.info('hi, agent, egg is ready');
+    const data = { state: 'egg-ready'};
+    agent.messenger.sendToApp('ready-action', data);
+  });
+};

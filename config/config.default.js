@@ -2,6 +2,11 @@
 
 module.exports = app => {
   return {
+    listen: {
+      port: 7001,
+      hostname: '127.0.0.1',
+      // path: '/var/run/egg.sock',
+    },
     keys: '123456',
     // security: {
     //   csrf: false
