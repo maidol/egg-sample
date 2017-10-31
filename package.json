@@ -6,12 +6,15 @@
     "dev": "egg-bin dev --port 7001",
     "test": "egg-bin test",
     "cov": "egg-bin cov",
-    "debug": "egg-bin debug"
+    "debug": "egg-bin debug",
+    "start": "egg-scripts start",
+    "stop": "egg-scripts stop"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "egg": "^1.10.0",
+    "egg-scripts": "^2.1.0",
     "egg-view-nunjucks": "^2.1.4",
     "koa-compress": "^2.0.0"
   },
