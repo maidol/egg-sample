@@ -33,6 +33,7 @@ module.exports = app => {
       serverUrl: 'https://hacker-news.firebaseio.com/v0'
     },
     middleware: [
+      'errorHandler',
       'robot',
       'compress'
     ],
@@ -52,6 +53,10 @@ module.exports = app => {
       // dir: require('path').join(app.baseDir, 'my/logs')
       level: 'info',
       consoleLevel: 'info'
+    },
+    // 只对 /api 前缀的 url 路径生效
+    errorHandler: {
+      match: '/api',
     },
   }
 }
