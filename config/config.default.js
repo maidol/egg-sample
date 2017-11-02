@@ -8,9 +8,20 @@ module.exports = app => {
       // path: '/var/run/egg.sock',
     },
     keys: '123456',
-    // security: {
-    //   csrf: false
-    // },
+    security: {
+      csrf: false
+    },
+    i18n: {
+      defaultLocale: 'zh-CN',
+      // 优先级从高到低
+      // query: /?locale=en-US
+      // cookie: locale=zh-TW
+      // header: Accept-Language: zh-CN,zh;q=0.5
+      queryField: 'locale',
+      cookieField: 'locale',
+      // Cookie 默认一年后过期， 如果设置为 Number，则单位为 ms
+      cookieMaxAge: '1y',
+    },
     view: {
       defaultViewEngine: 'nunjucks',
       mapping: {
