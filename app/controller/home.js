@@ -5,8 +5,6 @@ module.exports = app => {
     async index(ctx) {
       // const ctx = this.ctx;
       // ctx.logger.info('info');
-      // ctx.coreLogger.info('info');
-      this.logger.info('index');
       ctx.body = 'hello world';
     }
   }

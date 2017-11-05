@@ -1,5 +1,5 @@
 {
-  "name": "egg-sample",
+  "name": "my-sample",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -7,7 +7,7 @@
     "test": "egg-bin test",
     "cov": "egg-bin cov",
     "debug": "egg-bin debug",
-    "start": "egg-scripts start",
+    "start": "egg-scripts start --workers=2",
     "stop": "egg-scripts stop"
   },
   "author": "",

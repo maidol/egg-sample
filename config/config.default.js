@@ -50,9 +50,15 @@ module.exports = app => {
       threshold: 1
     },
     logger: {
-      // dir: require('path').join(app.baseDir, 'my/logs')
+      // encoding: 'utf8',
+      // dir: require('path').join(app.baseDir, 'my/logs'),
+      // appLogName: `cw-${app.name}-web.log`,
+      // coreLogName: 'cw-egg-web.log',
+      // agentLogName: 'cw-egg-agent.log',
+      // errorLogName: 'cw-common-error.log',
       level: 'info',
-      consoleLevel: 'info'
+      consoleLevel: 'info',
+      // outputJSON: true
     },
     // 只对 /api 前缀的 url 路径生效
     errorHandler: {

@@ -9,9 +9,9 @@ module.exports = app => {
       ]
     },    
     logger: {
-      // dir: require('path').join(app.baseDir, 'my/logs')
-      level: 'debug',
-      consoleLevel: 'debug'
-    },
+      // dir: require('path').join(app.baseDir, 'logs'),
+      level: 'info',
+      consoleLevel: 'info'
+    }
   }
 }

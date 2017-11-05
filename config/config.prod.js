@@ -7,6 +7,11 @@ module.exports = app => {
         /sina/i,
         /Baiduspider/i
       ]
+    },    
+    logger: {
+      // dir: require('path').join(app.baseDir, 'logs'),
+      level: 'info',
+      consoleLevel: 'info'
     }
   }
 }
