@@ -9,9 +9,11 @@ module.exports = app => {
       ]
     },    
     logger: {
-      // dir: require('path').join(app.baseDir, 'logs'),
+      dir: require('path').join(app.baseDir, 'logs'),
       level: 'info',
-      consoleLevel: 'info'
+      consoleLevel: 'info',
+      disableConsoleAfterReady: true,
+      outputJSON: false
     }
   }
 }

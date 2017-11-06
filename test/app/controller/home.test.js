@@ -2,6 +2,9 @@
 
 const { app, mock, assert } = require('egg-mock/bootstrap');
 describe('test/app/controller/home.test.js', () => {
+  before(() => {
+    return app.ready(app.initCWApp.bind(app)); // app启动后初始化cwapp
+  });
   describe('GET /', () => {
     it('should status 200 and get the body', () => {
       // 对 app 发起 `GET /` 请求

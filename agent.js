@@ -2,8 +2,9 @@
 
 module.exports = agent => {
   agent.workerPids = []; // alive pids
-  agent.workers = {}; // alive 
+  agent.workers = {}; // 占位
   agent.eggReady = false; // 整个egg服务启动完成的标志
+
   agent.logger.info('agent running..');
 
   // 在这里写你的初始化逻辑
@@ -23,23 +24,53 @@ module.exports = agent => {
   
   agent.messenger.on('egg-pids', (data) => {
     if(agent.eggReady){
-      // 有appworker start/exit
+      // appworker start/exit
       // 更新 alive workers, workerPids列表
-      console.info('hi, agent, update alive egg-pids', data);
-      agent.workerPids = data;
-      agent.workerPids.forEach(pid=>{
-        for (let key in agent.workers) {
-          if (agent.workers.hasOwnProperty(`w_${pid}`)) {
-            agent.workers[key] = agent.workers[key];
-          } else {
-            let ele = agent.workers[key];
-            delete agent.workers[key];
-            agent.workers[`w_${pid}`] = ele;
-            agent.messenger.sendTo(pid, 'allocation-workid', ele);
-          }
+      console.info('hi, agent, update alive egg-pids', data, agent.workers);
+      agent.logger.info('hi, agent, update alive egg-pids', data, agent.workers);
+      let usedArr = []; // 已被分配的workerId
+      let unusedArr = []; // 需重新分配的workerId
+      let resW = {};
+      let usedPids = []; //  已被分配了workerId的pid
+      let unusedPids = []; //  等待分配workerId的pid
+
+      let pidKeys = data.map(p=>`w_${p}`);
+      let workersKeys = Object.keys(agent.workers);
+
+      for (let key in agent.workers) {
+        if(pidKeys.indexOf(key) > -1) {
+          usedArr.push(agent.workers[key]);
+          usedPids.push(key);
+          resW[key] = agent.workers[key];
+        }else{
+          unusedArr.push(agent.workers[key]);
+        }
+      }
+
+      pidKeys.forEach(pk=>{
+        if(workersKeys.indexOf(pk) < 0){
+          unusedPids.push(pk);
         }
       });
-      console.log('appworker start/exit, update agent.workers', agent.workers);
+
+      unusedPids.forEach(pk=>{
+        let ix = unusedArr.pop();
+        resW[pk] = ix;
+        agent.messenger.sendTo(pk.replace('w_', ''), 'allocation-workid', ix);
+      });
+
+      // resW{a,b,e,f} agent.workers{a,b,c,d}
+      // resW{a,b,e} agent.workers{a,b,c,d}
+      while (Object.keys(resW).length < Object.keys(agent.workers).length && unusedArr.length > 0) {
+        // 取出占位
+        let ix = unusedArr.pop();
+        resW[`w_u_${ix}`] = ix;
+      }
+
+      agent.workerPids = data;
+      agent.workers = resW;
+      console.log('appworker start/exit, update agent.workers result', agent.workers);
+      agent.logger.info('appworker start/exit, update agent.workers result', agent.workers);
     };
   });
 

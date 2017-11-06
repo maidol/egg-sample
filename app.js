@@ -9,9 +9,11 @@ module.exports = app => {
 
   app.ready((err) => {
     console.log('hi, app, app.ready', process.pid);
-    app.messenger.sendToAgent('app-readyfor-workerid', { pid: process.pid });
+    app.messenger.sendToAgent('app-readyfor-workerid', {
+      pid: process.pid
+    });
   });
-  
+
   // 在中间件最前面统计请求时间
   app.config.coreMiddleware.unshift('report');
 
@@ -22,6 +24,27 @@ module.exports = app => {
   app.messenger.on('allocation-workid', data => {
     // 设置workerId
     app.workerId = data;
+    process.env.pm_id = data;
+    if(app.config.env === 'local'){
+      app.workerId = undefined;
+      delete process.env.pm_id;
+    }
+
     console.log('hi, app, on allocation-workid', process.pid, app.workerId);
+
+    // 初始化
+    app.initCWApp();
   });
 }
+
+// function initCWApp(app){
+//   const log = require('cw-logger')(app.config.cwLogger);
+//   app.cwLog = log;
+
+//   app.config.cwLogger.bunyan.categorys.forEach(c=>{
+//     let name = `${c.name}Logger`;
+//     app[name] = log[c.name];
+//   });
+
+//   console.log('init cw-app ...');
+// }

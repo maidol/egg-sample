@@ -7,7 +7,7 @@ describe('test/app/controller/sample.test.js', () => {
   let app;
   before(() => {
     app = mock.app();
-    return app.ready();
+    return app.ready(app.initCWApp.bind(app)); // app启动后初始化cwapp
   });
   before(() => {
     app.logger.info('before testing...');

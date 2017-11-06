@@ -60,6 +60,33 @@ module.exports = app => {
       consoleLevel: 'info',
       // outputJSON: true
     },
+    cwLogger: {
+      logRoot: require('path').resolve(__dirname, '../logs'), // 日志根目录(需根据实际情况设置)
+      logLevel: 'trace', // file
+      logLevel4console: 'trace', // console
+      enableBunyan: true, // 默认启用bunyan
+      bunyan: {
+        // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
+        categorys: [{
+          name: 'console',
+          type: 'console'
+        }, {
+          name: 'cw', // 模块/分类
+          type: 'rotatingFile',
+          rotateConfig: {
+            period: '1d', // The period at which to rotate.
+            totalFiles: 15 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+          }
+        }, {
+          name: 'common', // 模块/分类
+          type: 'rotatingFile',
+          rotateConfig: {
+            period: '1d', // The period at which to rotate.
+            totalFiles: 0 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+          }
+        }]
+      }
+    },
     // 只对 /api 前缀的 url 路径生效
     errorHandler: {
       match: '/api',
