@@ -25,6 +25,6 @@ ENV TZ Asia/Shanghai
 
 VOLUME /var/app/logs
 
-EXPOSE 112345
+EXPOSE 7001
 
 ENTRYPOINT egg-scripts start --workers=2
