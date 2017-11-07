@@ -24,6 +24,7 @@ module.exports = {
 
     this.cwLogger = log.app;
   
-    console.log('init cw-app ...');
+    // console.log('init cw-app ...');
+    this.logger.info('init cw-app ...');
   }
 }

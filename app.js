@@ -8,7 +8,8 @@ module.exports = app => {
   });
 
   app.ready((err) => {
-    console.log('hi, app, app.ready', process.pid);
+    // console.log('hi, app, app.ready', process.pid);
+    app.logger.info('hi, app, app.ready', process.pid);
     app.messenger.sendToAgent('app-readyfor-workerid', {
       pid: process.pid
     });
@@ -30,7 +31,8 @@ module.exports = app => {
       delete process.env.pm_id;
     }
 
-    console.log('hi, app, on allocation-workid', process.pid, app.workerId);
+    // console.log('hi, app, on allocation-workid', process.pid, app.workerId);
+    app.logger.info('hi, app, on allocation-workid', process.pid, app.workerId);
 
     // 初始化
     app.initCWApp();

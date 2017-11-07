@@ -15,7 +15,8 @@ module.exports = {
 
     this.cwLogger = log.agent;
   
-    console.log('init cw-agent ...');
+    // console.log('init cw-agent ...');
+    this.logger.info('init cw-agent ...');
   }
 };
 
