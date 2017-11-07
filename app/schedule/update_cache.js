@@ -20,7 +20,8 @@ module.exports = app => {
       const res = await Promise.resolve({ data: Date.now() });
       ctx.app.cache = res;
       // ctx.logger.debug('UpdateCache', app.cache);
-      this.logger.debug('UpdateCache', app.cache);
+      // this.logger.debug('UpdateCache', app.cache);
+      app.cwLogger.debug('UpdateCache', app.cache);
       debug('UpdateCache', app.cache);
     }
   }

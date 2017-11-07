@@ -21,6 +21,8 @@ module.exports = {
       let name = `${c.name}Logger`;
       this[name] = log[c.name];
     });
+
+    this.cwLogger = log.app;
   
     console.log('init cw-app ...');
   }

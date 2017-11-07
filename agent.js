@@ -6,6 +6,7 @@ module.exports = agent => {
   agent.eggReady = false; // 整个egg服务启动完成的标志
 
   agent.logger.info('agent running..');
+  agent.initCWAgent();
 
   // 在这里写你的初始化逻辑
   // 也可以通过 messenger 对象发送消息给 App Worker

@@ -9,7 +9,7 @@ module.exports = app => {
       ]
     },    
     logger: {
-      dir: require('path').join(app.baseDir, 'logs'),
+      dir: require('path').join(app.baseDir, 'logs/egg'),
       level: 'info',
       consoleLevel: 'info',
       disableConsoleAfterReady: true,

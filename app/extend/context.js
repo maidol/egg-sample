@@ -6,5 +6,16 @@ module.exports = {
   },
   test2(){
     return 'test2';
+  },
+  get cwLogger() {
+    const app = this.app;
+    return app.cwLogger;
+  },
+  get consoleLogger() {
+    const app = this.app;
+    return app.consoleLogger;
+  },
+  getLogger(name) {
+    return this.app[name];
   }
 }

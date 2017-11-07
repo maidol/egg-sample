@@ -51,7 +51,7 @@ module.exports = app => {
     },
     logger: {
       // encoding: 'utf8',
-      // dir: require('path').join(app.baseDir, 'my/logs'),
+      dir: require('path').join(app.baseDir, 'logs/egg'),
       // appLogName: `cw-${app.name}-web.log`,
       // coreLogName: 'cw-egg-web.log',
       // agentLogName: 'cw-egg-agent.log',
@@ -71,7 +71,7 @@ module.exports = app => {
           name: 'console',
           type: 'console'
         }, {
-          name: 'cw', // 模块/分类
+          name: 'app', // 模块/分类
           type: 'rotatingFile',
           rotateConfig: {
             period: '1d', // The period at which to rotate.
