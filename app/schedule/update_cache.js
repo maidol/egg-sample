@@ -7,7 +7,7 @@ module.exports = app => {
     // 通过 schedule 属性来设置定时任务的执行间隔等配置
     static get schedule() {
       return {
-        interval: '1m', // 1 分钟间隔
+        interval: '1s', // 1 分钟间隔
         type: 'all', // 指定所有的 worker 都需要执行
       };
     }
@@ -21,7 +21,8 @@ module.exports = app => {
       ctx.app.cache = res;
       // ctx.logger.debug('UpdateCache', app.cache);
       // this.logger.debug('UpdateCache', app.cache);
-      app.consoleLogger.debug('UpdateCache', app.cache);
+      // app.consoleLogger.debug('UpdateCache', app.cache);
+      ctx.consoleLogger.debug('UpdateCache', app.cache);
       debug('UpdateCache', app.cache);
     }
   }

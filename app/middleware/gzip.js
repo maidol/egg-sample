@@ -12,7 +12,7 @@ module.exports = (options, app) => {
     let body = ctx.body;
     if (!body) return;
     if (ctx.get('Accept-Encoding') && ctx.get('Accept-Encoding').indexOf('gzip') > -1) {
-      ctx.logger.info('to set gzip');
+      ctx.cwLogger.info('to set gzip');
       if (isJSON(body)) body = JSON.stringify(body);
       // 设置 gzip body，修正响应头
       const stream = zlib.createGzip();

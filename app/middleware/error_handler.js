@@ -2,7 +2,7 @@
 
 module.exports = (options, app) => {
   return async(ctx, next) => {
-    ctx.logger.info('errorHandler', options);
+    ctx.cwLogger.info('errorHandler', options);
     try {
       await next();
     } catch (err) {
