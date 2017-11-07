@@ -7,6 +7,8 @@ module.exports = agent => {
 
   agent.logger.info('agent running..');
   agent.initCWAgent();
+  // agent.cwLogger.info('agent running..');
+  // agent.consoleLogger.info('agent running..');
 
   // 在这里写你的初始化逻辑
   // 也可以通过 messenger 对象发送消息给 App Worker

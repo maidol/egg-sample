@@ -6,7 +6,8 @@ const zlib = require('zlib');
 module.exports = (options, app) => {
   return async(ctx, next) => {
     await next();
-    ctx.logger.info('gzip', ctx.body, ctx.get('Accept-Encoding'));
+    // ctx.logger.info('gzip', ctx.body, ctx.get('Accept-Encoding'));
+    ctx.cwLogger.info('gzip', ctx.body, ctx.get('Accept-Encoding'));
     // 后续中间件执行完成后将响应体转换成 gzip
     let body = ctx.body;
     if (!body) return;

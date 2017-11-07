@@ -12,12 +12,9 @@
 ### - NODE_ENV
 ### - EGG_SERVER_ENV
 
-## 日志对象 { agent{ logger, coreLogger }, app{ logger, coreLogger }, context{ logger, coreLogger } }
-### agent.logger/coreLogger, app.logger/coreLogger,  context.logger/coreLogger
-### logger是应用层的日志, 开发应用时使用; coreLogger是框架或插件层的日志, 开框架或插件是使用
-### logger/coreLogger.error 打印出来的日志都会统一重定向到固定的一个文件位置common-error.log
-### agent进程的非错误日志统一打印到agent的日志文件
-### coreLogger的consoleLevel固定为>=warn
+## egg日志对象 { agent{ logger, coreLogger }, app{ logger, coreLogger }, context{ logger, coreLogger } }
+
+## cw日志对象 { agent{ cwLogger, consoleLogger }, app{ cwLogger, consoleLogger }, context{ cwLogger, consoleLogger } }
 
 ## 中间件
 ------
