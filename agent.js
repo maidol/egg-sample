@@ -80,3 +80,28 @@ module.exports = agent => {
     }
   });
 };
+
+function allocateWorkerId(alivePids, workers, workerIds) {
+  let r = {};
+
+  let alivePKs = alivePids.map(p=>`w_${p}`);
+  Object.keys(workers).forEach(k=>{
+    if(alivePKs.indexOf(k) < 0){
+      let wid = workers[k];
+      workerIds.push(wid);
+    }else{
+      r[k] = worker[k];
+    }
+  });
+
+  alivePids.forEach(p=>{
+    if(Object.keys(workers).indexOf(p) < 0){
+      let wid = workerIds.pop();
+      r[`w_${p}`] = wid;
+    }else{
+      r[`w_${p}`] = worker[`w_${p}`];
+    }
+  });
+  
+  return r;
+}
