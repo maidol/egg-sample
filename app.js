@@ -8,7 +8,6 @@ module.exports = app => {
   });
 
   app.ready((err) => {
-    // console.log('hi, app, app.ready', process.pid);
     app.logger.info('hi, app, app.ready', process.pid);
     app.messenger.sendToAgent('app-readyfor-workerid', {
       pid: process.pid
@@ -31,22 +30,9 @@ module.exports = app => {
       delete process.env.pm_id;
     }
 
-    // console.log('hi, app, on allocation-workid', process.pid, app.workerId);
     app.logger.info('hi, app, on allocation-workid', process.pid, app.workerId);
 
     // 初始化
     app.initCWApp();
   });
 }
-
-// function initCWApp(app){
-//   const log = require('cw-logger')(app.config.cwLogger);
-//   app.cwLog = log;
-
-//   app.config.cwLogger.bunyan.categorys.forEach(c=>{
-//     let name = `${c.name}Logger`;
-//     app[name] = log[c.name];
-//   });
-
-//   console.log('init cw-app ...');
-// }

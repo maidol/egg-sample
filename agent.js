@@ -7,8 +7,6 @@ module.exports = agent => {
 
   agent.logger.info('agent running..');
   agent.initCWAgent();
-  // agent.cwLogger.info('agent running..');
-  // agent.consoleLogger.info('agent running..');
 
   // 在这里写你的初始化逻辑
   // 也可以通过 messenger 对象发送消息给 App Worker
@@ -29,7 +27,6 @@ module.exports = agent => {
     if(agent.eggReady){
       // appworker start/exit
       // 更新 alive workers, workerPids列表
-      // console.info('hi, agent, update alive egg-pids', data, agent.workers);
       agent.logger.info('hi, agent, update alive egg-pids', data, agent.workers);
       let usedArr = []; // 已被分配的workerId
       let unusedArr = []; // 需重新分配的workerId
@@ -72,7 +69,6 @@ module.exports = agent => {
 
       agent.workerPids = data;
       agent.workers = resW;
-      // console.log('appworker start/exit, update agent.workers result', agent.workers);
       agent.logger.info('appworker start/exit, update agent.workers result', agent.workers);
     };
   });
@@ -80,7 +76,6 @@ module.exports = agent => {
   agent.messenger.on('app-readyfor-workerid', data => {
     if(!agent.eggReady){
       agent.workerPids.push(data.pid);
-      // console.log('hi, agent, on app-readyfor-workerid', data);
       agent.logger.info('hi, agent, on app-readyfor-workerid', data);
     }
   });
