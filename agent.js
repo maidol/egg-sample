@@ -30,9 +30,15 @@ module.exports = agent => {
       // 更新 alive workers, workerPids列表
       agent.logger.info('hi, agent, update alive egg-pids', data, agent.workers);
 
+      let { workers, sendTo } = allocateWorkerId(data, agent.workers, agent.workerIds);
+      for (let key in sendTo) {
+        if (sendTo.hasOwnProperty(key)) {
+          let wid = sendTo[key];
+          agent.messenger.sendTo(key.replace('w_', ''), 'allocation-workid', wid);
+        }
+      }
       agent.workerPids = data;
-      agent.workers = allocateWorkerId(data, agent.workers, agent.workerIds);
-
+      agent.workers = workers;
       // let usedArr = []; // 已被分配的workerId
       // let unusedArr = []; // 需重新分配的workerId
       // let resW = {};
@@ -89,6 +95,7 @@ module.exports = agent => {
 
 function allocateWorkerId(alivePids, workers, workerIds) {
   let r = {};
+  let sendTo = {};
 
   let alivePKs = alivePids.map(p=>`w_${p}`);
   Object.keys(workers).forEach(k=>{
@@ -104,10 +111,11 @@ function allocateWorkerId(alivePids, workers, workerIds) {
     if(Object.keys(workers).indexOf(`w_${p}`) < 0){
       let wid = workerIds.pop();
       r[`w_${p}`] = wid;
+      sendTo[`w_${p}`] = wid;
     }else{
       r[`w_${p}`] = workers[`w_${p}`];
     }
   });
 
-  return r;
+  return { workers: r, sendTo };
 }
