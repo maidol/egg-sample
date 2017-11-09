@@ -70,7 +70,7 @@ module.exports = app => {
         categorys: [{
           name: 'console',
           type: 'console',
-          logLevel4console: 'debug',
+          logLevel4console: 'info',
           pretty: true
         }, {
           name: 'app', // 模块/分类
