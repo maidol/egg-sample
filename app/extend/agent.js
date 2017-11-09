@@ -5,7 +5,7 @@ module.exports = {
     
   },
   initCWAgent(){
-    const log = require('cw-logger')(config);
+    const log = require('cw-logger')(this.config.cwLogger4unittest || config);
     this.cwLog = log;
   
     config.bunyan.categorys.forEach(c=>{
@@ -29,7 +29,9 @@ const config = {
     // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
     categorys: [{
       name: 'console',
-      type: 'console'
+      type: 'console',
+      logLevel4console: 'error',
+      pretty: true
     }, {
       name: 'agent', // 模块/分类
       type: 'rotatingFile',
