@@ -1,20 +1,25 @@
 ## 对象
 ------
-### - Application(Koa的全局应用对象) { logger, coreLogger, config, Controller, Service, middleware, middlewares }
-### - Config { appMiddleware, coreMiddleware }
-### - Context { app, logger, coreLogger, service, request, response, helper }
-### - Controller { ctx, app, config, logger }
-### - Service { ctx, app, config, logger, service }
+### - Application(Koa的全局应用对象) 
+{ logger, coreLogger, config, Controller, Service, middleware, middlewares }
+### - 配置Config 
+{ appMiddleware, coreMiddleware }
+### - Context
+{ app, logger, coreLogger, service, request, response, helper }
+### - Controller
+{ ctx, app, config, logger }
+### - Service
+{ ctx, app, config, logger, service }
 ### - Logger
+#### egg日志对象
+{ agent{ logger, coreLogger }, app{ logger, coreLogger }, context{ logger, coreLogger }}
+### cw日志对象
+{ agent{ cwLogger, consoleLogger }, app{ cwLogger, consoleLogger }, context{ cwLogger, consoleLogger } }
 
 ## 环境变量 NODE_ENV 
 ------
 ### - NODE_ENV
 ### - EGG_SERVER_ENV
-
-## egg日志对象 { agent{ logger, coreLogger }, app{ logger, coreLogger }, context{ logger, coreLogger } }
-
-## cw日志对象 { agent{ cwLogger, consoleLogger }, app{ cwLogger, consoleLogger }, context{ cwLogger, consoleLogger } }
 
 ## 中间件
 ------
@@ -55,6 +60,7 @@ $ # 支持 mocha 的参数，如 grep / require 等
 $ npm test -- -t 30000 --grep="should GET"
 ```
 ### - 执行顺序。每个用例(describe)会按 before -> beforeEach -> it -> afterEach -> after 的顺序执行，而且可以定义多个
+
 ##  代码覆盖率
 ------
 ### - egg-bin 已经内置了 [nyc](https://github.com/istanbuljs/nyc) 来支持单元测试自动生成代码覆盖率报告
