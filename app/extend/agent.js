@@ -5,10 +5,12 @@ module.exports = {
     
   },
   initCWAgent(){
-    const log = require('cw-logger')(this.config.cwLogger4unittest || config);
+    const lconfig = this.config.agentLogger;
+    lconfig.bunyan.categorys = Object.keys(lconfig.bunyan.categorys).map(k => lconfig.bunyan.categorys[k]);
+    const log = require('cw-logger')(lconfig);
     this.cwLog = log;
   
-    config.bunyan.categorys.forEach(c=>{
+    lconfig.bunyan.categorys.forEach(c=>{
       let name = `${c.name}Logger`;
       this[name] = log[c.name];
     });
@@ -19,26 +21,3 @@ module.exports = {
     this.logger.info('init cw-agent ...');
   }
 };
-
-const config = {
-  logRoot: require('path').resolve(__dirname, '../../logs'), // 日志根目录(需根据实际情况设置)
-  logLevel: 'trace', // file
-  logLevel4console: 'trace', // console
-  enableBunyan: true, // 默认启用bunyan
-  bunyan: {
-    // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
-    categorys: [{
-      name: 'console',
-      type: 'console',
-      logLevel4console: 'error',
-      pretty: true
-    }, {
-      name: 'agent', // 模块/分类
-      type: 'rotatingFile',
-      rotateConfig: {
-        period: '1d', // The period at which to rotate.
-        totalFiles: 15 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
-      }
-    }]
-  }
-}

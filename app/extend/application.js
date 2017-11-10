@@ -14,7 +14,9 @@ module.exports = {
     this[CACHE] = value;
   },
   initCWApp(){
-    const log = require('cw-logger')(this.config.cwLogger);
+    const lconfig = this.config.cwLogger;
+    lconfig.bunyan.categorys = Object.keys(lconfig.bunyan.categorys).map(k => lconfig.bunyan.categorys[k]);
+    const log = require('cw-logger')(lconfig);
     this.cwLog = log;
   
     this.config.cwLogger.bunyan.categorys.forEach(c=>{

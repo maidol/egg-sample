@@ -64,31 +64,60 @@ module.exports = app => {
       logRoot: require('path').resolve(__dirname, '../logs'), // 日志根目录(需根据实际情况设置)
       logLevel: 'info', // file
       logLevel4console: 'error', // console
-      enableBunyan: true, // 默认启用bunyan
       bunyan: {
         // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
-        categorys: [{
-          name: 'console',
-          type: 'console',
-          logLevel4console: 'info',
-          pretty: true
-        }, {
-          name: 'app', // 模块/分类
-          type: 'rotatingFile',
-          pretty: true,
-          rotateConfig: {
-            period: '1d', // The period at which to rotate.
-            totalFiles: 15 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+        categorys: {
+          'console': {
+            name: 'console',
+            type: 'console',
+            // logLevel4console: 'info',
+            pretty: true
+          },
+          'app': {
+            name: 'app', // 模块/分类
+            type: 'rotatingFile',
+            // level: 'info',
+            // logLevel4console: 'error',
+            pretty: true,
+            rotateConfig: {
+              period: '1d', // The period at which to rotate.
+              totalFiles: 15 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+            }
+          },
+          'common': {
+            name: 'common', // 模块/分类
+            type: 'rotatingFile',
+            pretty: true,
+            rotateConfig: {
+              period: '1d', // The period at which to rotate.
+              totalFiles: 0 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+            }
           }
-        }, {
-          name: 'common', // 模块/分类
-          type: 'rotatingFile',
-          pretty: true,
-          rotateConfig: {
-            period: '1d', // The period at which to rotate.
-            totalFiles: 0 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+        }
+      }
+    },
+    agentLogger: {
+      logRoot: require('path').resolve(__dirname, '../../logs'), // 日志根目录(需根据实际情况设置)
+      logLevel: 'info', // file
+      logLevel4console: 'info', // console
+      bunyan: {
+        // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
+        categorys: {
+          'console': {
+            name: 'console',
+            type: 'console',
+            logLevel4console: 'error',
+            pretty: true
+          },
+          'agent': {
+            name: 'agent', // 模块/分类
+            type: 'rotatingFile',
+            rotateConfig: {
+              period: '1d', // The period at which to rotate.
+              totalFiles: 15 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
+            }
           }
-        }]
+        }
       }
     },
     // 只对 /api 前缀的 url 路径生效
