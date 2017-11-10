@@ -24,15 +24,6 @@ module.exports = app => {
             pretty: true,
             logLevel4console: 'debug',
           },
-          'agent': {
-            name: 'agent', // 模块/分类
-            type: 'rotatingFile',
-            pretty: true,
-            rotateConfig: {
-              period: '1d', // The period at which to rotate.
-              totalFiles: 15 //The maximum number of rotated files to keep. 0 to keep files regardless of how many there are.
-            }
-          },
           'app': {
             name: 'app', // 模块/分类
             type: 'rotatingFile',
