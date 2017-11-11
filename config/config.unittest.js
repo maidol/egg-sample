@@ -19,10 +19,7 @@ module.exports = app => {
         // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
         categorys: {
           'console': {
-            name: 'console',
-            type: 'console',
-            pretty: true,
-            logLevel4console: 'debug',
+            logLevel4console: 'info',
           },
           'app': {
             name: 'app', // 模块/分类

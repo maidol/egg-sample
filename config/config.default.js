@@ -97,16 +97,16 @@ module.exports = app => {
       }
     },
     agentLogger: {
-      logRoot: require('path').resolve(__dirname, '../../logs'), // 日志根目录(需根据实际情况设置)
+      logRoot: require('path').resolve(__dirname, '../logs'), // 日志根目录(需根据实际情况设置)
       logLevel: 'info', // file
-      logLevel4console: 'info', // console
+      logLevel4console: 'error', // console
       bunyan: {
         // 级别分别是: TRACE DEBUG INFO WARN ERROR FATAL
         categorys: {
           'console': {
             name: 'console',
             type: 'console',
-            logLevel4console: 'error',
+            // logLevel4console: 'error',
             pretty: true
           },
           'agent': {
