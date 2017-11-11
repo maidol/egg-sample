@@ -61,7 +61,7 @@ module.exports = app => {
       // outputJSON: true
     },
     cwLogger: {
-      logRoot: require('path').resolve(__dirname, '../logs'), // 日志根目录(需根据实际情况设置)
+      logRoot: require('path').join(app.baseDir, 'logs'), // 日志根目录(需根据实际情况设置)
       logLevel: 'info', // file
       logLevel4console: 'error', // console
       bunyan: {
@@ -97,7 +97,7 @@ module.exports = app => {
       }
     },
     agentLogger: {
-      logRoot: require('path').resolve(__dirname, '../logs'), // 日志根目录(需根据实际情况设置)
+      logRoot: require('path').join(app.baseDir, 'logs'), // 日志根目录(需根据实际情况设置)
       logLevel: 'info', // file
       logLevel4console: 'error', // console
       bunyan: {

@@ -6,6 +6,14 @@ module.exports = {
   },
   initCWAgent(){
     const lconfig = this.config.agentLogger;
+    if(this.config.env === 'unittest'){
+      // 由agent负责初始化所有logger
+      for (const key in this.config.cwLogger.bunyan.categorys) {
+        if (this.config.cwLogger.bunyan.categorys.hasOwnProperty(key)) {
+          lconfig.bunyan.categorys[key] = this.config.cwLogger.bunyan.categorys[key];
+        }
+      }
+    }
     lconfig.bunyan.categorys = Object.keys(lconfig.bunyan.categorys).map(k => lconfig.bunyan.categorys[k]);
     const log = require('cw-logger')(lconfig);
     this.cwLog = log;

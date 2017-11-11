@@ -53,6 +53,12 @@ module.exports = agent => {
   });
 };
 
+/**
+ * 分配workerId
+ * @param {Array} alivePids 
+ * @param {Object} workers 
+ * @param {Array} workerIds 
+ */
 function allocateWorkerId(alivePids, workers, workerIds) {
   let r = {};
   let sendTo = {};
