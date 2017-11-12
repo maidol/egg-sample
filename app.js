@@ -3,6 +3,8 @@
 module.exports = app => {
   app.logger.info('app running ...', app.config.env, app.baseDir, app.name);
 
+  app.Joi = require('joi');
+
   app.beforeStart(async() => {
     app.cache = Promise.resolve('cache');
   });
