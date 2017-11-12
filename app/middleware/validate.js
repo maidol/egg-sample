@@ -3,6 +3,7 @@
 // joi
 module.exports = (options, app) => {
   return async(ctx, next) => {
+    // 验证请求参数
     ctx.cwLogger.info('joi validate...');
     for (const key in options.schemas) {
       if (options.schemas.hasOwnProperty(key)) {
@@ -18,5 +19,6 @@ module.exports = (options, app) => {
       }
     }
     await next();
+    // TODO: 验证返回数据
   }
 }
