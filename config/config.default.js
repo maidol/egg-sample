@@ -48,7 +48,7 @@ module.exports = app => {
       enable: false,
     },
     bodyParser: {
-      enable: false,
+      enable: true,
     },
     overrideMethod: {
       enable: false,
