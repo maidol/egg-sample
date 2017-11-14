@@ -16,6 +16,10 @@ module.exports = app => {
           'console': {
             logLevel4console: 'debug',
             // pretty: true
+            src: true
+          },
+          'app': {
+            src: true
           }
         }
       }
@@ -27,6 +31,10 @@ module.exports = app => {
         categorys: {
           'console': {
             logLevel4console: 'debug',
+            src: true
+          },
+          'agent': {
+            src: true
           }
         }
       }

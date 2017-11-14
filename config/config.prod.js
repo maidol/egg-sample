@@ -10,7 +10,16 @@ module.exports = app => {
     },    
     logger: {
       disableConsoleAfterReady: true,
-      outputJSON: false
-    }
+      outputJSON: false,
+      level: 'error',
+      consoleLevel: 'error',
+      allowDebugAtProd: false,
+    },
+    cwLogger: {
+      logLevel: 'error', // file
+    },
+    agentLogger: {
+      logLevel: 'error', // file
+    },
   }
 }
