@@ -52,10 +52,9 @@ module.exports = {
       errCode: _.isNumber(errCode) ? errCode : apiCode.errCodeEnum.apiError
     });
   },
-  validateError(err) {
-    var msg = '参数校验失败,details:' + JSON.stringify(err);
-    throw Object.assign(new Error(msg), {
-      errCode: apiCode.errCodeEnum.paramTypeError
+  validateError(err, errCode) {
+    throw Object.assign(err, {
+      errCode
     });
   }
 }

@@ -17,7 +17,7 @@ module.exports = (options, app) => {
           // // ctx.throw(422, message);
           // ctx.body = message;
           // return;
-          throw Object.assign(error, {errCode: ctx.app.apiCode.errCodeEnum.paramTypeError});
+          ctx.validateError(error, app.apiCode.errCodeEnum.paramTypeError);
         }
       }
     }
@@ -30,7 +30,7 @@ module.exports = (options, app) => {
         // // ctx.throw(422, message);
         // ctx.body = message;
         // return;
-        throw Object.assign(error, {errCode: ctx.app.apiCode.errCodeEnum.responseParamTypeError});
+        ctx.validateError(error, app.apiCode.errCodeEnum.responseParamTypeError);
       }
     }
   }

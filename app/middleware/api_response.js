@@ -2,7 +2,7 @@
 
 module.exports = (options, app) => {
   return async(ctx, next) => {
-    const apiCode = ctx.app.apiCode;
+    const apiCode = app.apiCode;
     try {
       await next();
       if (ctx.response.status === 404 && ctx.body === undefined) {
