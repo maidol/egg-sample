@@ -62,15 +62,15 @@ module.exports = {
     this.logger.info('init cw-app ...');
 
     this.on('error', (err, ctx)=> {
-      self.cwLogger.error("app-on-error事件:", err);
+      self.cwLogger.error(err, "app-on-error事件:");
     });
 
     process.on('unhandledRejection', function (err) {
-      self.cwLogger.error("process-on-unhandledRejection事件:", err);
+      self.cwLogger.error(err, "process-on-unhandledRejection事件:");
     });
     
     process.on('uncaughtException', function (err) {
-      self.cwLogger.error("process-on-uncaughtException事件:", err);
+      self.cwLogger.error(err, "process-on-uncaughtException事件:");
     });
   }
 }

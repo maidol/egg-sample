@@ -10,7 +10,7 @@ module.exports = (options, app) => {
           apiCode.errCodeEnum.notReturnData, 'success', null)
       }
     } catch (e) {
-      ctx.cwLogger.error('current url -->>', ctx.url, e);
+      ctx.cwLogger.error(e,'current url -->>', ctx.url);
 
       if (e === undefined || e === null) {
         e = new Error("未定义的错误")
