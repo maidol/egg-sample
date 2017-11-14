@@ -11,19 +11,19 @@ describe('test/app/controller/home.test.js', () => {
       return app.httpRequest()
         .get('/')
         .expect(200) // 期望返回 status 200
-        .expect('hello world'); // 期望 body 是 hello world
+        .expect('cw-egg hello world'); // 期望 body 是 hello world
     });
     it('should send multi requests', async() => {
       // 使用 generator function 方式写测试用例，可以在一个用例中串行发起多次请求
       await app.httpRequest()
         .get('/')
         .expect(200) // 期望返回 status 200
-        .expect('hello world'); // 期望 body 是 hello world
+        .expect('cw-egg hello world'); // 期望 body 是 hello world
       // 再请求一次
       const result = await app.httpRequest()
         .get('/')
         .expect(200)
-        .expect('hello world');
+        .expect('cw-egg hello world');
       // 也可以这样验证
       assert(result.status === 200);
     });
