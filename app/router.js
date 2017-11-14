@@ -2,8 +2,9 @@
 
 module.exports = app => {
   app.get('/', app.controller.home.index);
+  app.get('/hello', app.controller.home.hello);
   app.get('/validate', app.middlewares.validate({
-    auth: false,
+    // auth: false,
     req: {
       headers: app.Joi.object().unknown(),
       body: app.Joi.object().unknown(),

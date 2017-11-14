@@ -7,5 +7,8 @@ module.exports = app => {
       ctx.consoleLogger.info('hello world');
       ctx.body = 'hello world';
     }
+    async hello(ctx) {
+      ctx.success('hello world');
+    }
   }
 };

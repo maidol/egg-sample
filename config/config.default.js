@@ -8,9 +8,6 @@ module.exports = app => {
       // path: '/var/run/egg.sock',
     },
     keys: '123456',
-    security: {
-      csrf: false
-    },
     i18n: {
       defaultLocale: 'zh-CN',
       // 优先级从高到低
@@ -38,6 +35,44 @@ module.exports = app => {
       'apiResponse',
       'compress'
     ],
+    meta: {
+      enable: false,
+    },
+    siteFile: {
+      enable: false,
+    },
+    notfound: {
+      enable: false,
+    },
+    static: {
+      enable: false,
+    },
+    bodyParser: {
+      enable: false,
+    },
+    overrideMethod: {
+      enable: false,
+    },
+    session: {
+      enable: false,
+    },
+    i18n: {
+      enable: false,
+    },
+    securities: {
+      enable: false, // 禁用所有默认安全中间件
+    },
+    security: {
+      csrf: {
+        enable: false,
+      },
+      xframe: {
+        enable: false,
+      },
+      csp: {
+        enable: false
+      }
+    },
     robot: {
       enable: false,
       name: 'robot',
