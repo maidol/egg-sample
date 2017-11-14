@@ -33,11 +33,18 @@ module.exports = app => {
       serverUrl: 'https://hacker-news.firebaseio.com/v0'
     },
     middleware: [
+      'robot',
       'errorHandler',
       'apiResponse',
-      'robot',
       'compress'
     ],
+    robot: {
+      enable: false,
+      name: 'robot',
+      ua: [
+        /Baiduspider/i
+      ]
+    },
     // 只对 /api 前缀的 url 路径生效
     errorHandler: {
       enable: false,
@@ -45,13 +52,6 @@ module.exports = app => {
     },    
     apiResponse: {
       enable: true,
-    },
-    robot: {
-      enable: false,
-      name: 'robot',
-      ua: [
-        /Baiduspider/i
-      ]
     },
     compress: {
       enable: false,

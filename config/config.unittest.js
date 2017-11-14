@@ -3,6 +3,7 @@
 module.exports = app => {
   return {
     robot: {
+      enable: true,
       ua: [
         /sina/i,
         /Baiduspider/i
