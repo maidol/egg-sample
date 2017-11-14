@@ -34,10 +34,20 @@ module.exports = app => {
     },
     middleware: [
       'errorHandler',
+      'apiResponse',
       'robot',
       'compress'
     ],
+    // 只对 /api 前缀的 url 路径生效
+    errorHandler: {
+      enable: true,
+      match: '/api',
+    },    
+    apiResponse: {
+      enable: true,
+    },
     robot: {
+      enable: false,
       name: 'robot',
       ua: [
         /Baiduspider/i
@@ -129,10 +139,6 @@ module.exports = app => {
           }
         }
       }
-    },
-    // 只对 /api 前缀的 url 路径生效
-    errorHandler: {
-      match: '/api',
     },
   }
 }

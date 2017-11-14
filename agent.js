@@ -5,6 +5,7 @@ module.exports = agent => {
 
   agent.mysql = require('./lib/mysql');
   agent.Joi = require('joi');
+  agent.apiCode = require('./lib/api_code_enum');
 
   agent.workerIds = []; // 可被分配的wid
   agent.workerPids = []; // alive pids

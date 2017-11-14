@@ -37,6 +37,7 @@ module.exports = {
     });
   },
   initCWAgent(){
+    const self = this;
     const lconfig = this.config.agentLogger;
     if(this.config.env === 'unittest'){
       // 由agent负责初始化所有logger
@@ -57,7 +58,18 @@ module.exports = {
 
     this.cwLogger = log.agent;
   
-    // console.log('init cw-agent ...');
     this.logger.info('init cw-agent ...');
+
+    this.on('error', (err, ctx)=> {
+      self.cwLogger.error("app-on-error事件:", err);
+    });
+
+    process.on('unhandledRejection', function (err) {
+      self.cwLogger.error("process-on-unhandledRejection事件:", err);
+    });
+    
+    process.on('uncaughtException', function (err) {
+      self.cwLogger.error("process-on-uncaughtException事件:", err);
+    });
   }
 };

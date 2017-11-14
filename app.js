@@ -5,6 +5,7 @@ module.exports = app => {
 
   app.mysql = require('./lib/mysql');
   app.Joi = require('joi');
+  app.apiCode = require('./lib/api_code_enum');
 
   app.beforeStart(async() => {
     app.cache = await Promise.resolve({});

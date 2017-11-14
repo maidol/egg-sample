@@ -22,7 +22,7 @@ module.exports = app => {
         });
         return result;
       } catch (error) {
-        ctx.cwLogger.error(error);
+        throw error;
       }
     }
   };
