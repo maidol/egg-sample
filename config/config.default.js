@@ -40,7 +40,7 @@ module.exports = app => {
     ],
     // 只对 /api 前缀的 url 路径生效
     errorHandler: {
-      enable: true,
+      enable: false,
       match: '/api',
     },    
     apiResponse: {
