@@ -1,7 +1,8 @@
 'use strict;'
 
 module.exports = app => {
-  app.get('/', app.middlewares.validate({
+  app.get('/', app.controller.home.index);
+  app.get('/validate', app.middlewares.validate({
     auth: false,
     req: {
       headers: app.Joi.object().unknown(),
