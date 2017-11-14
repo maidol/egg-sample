@@ -9,6 +9,9 @@ module.exports = app => {
         /Baiduspider/i
       ]
     },
+    bodyParser: {
+      enable: true,
+    },
     logger: {
       // dir: require('path').join(app.baseDir, 'my/logs')
       level: 'info',
