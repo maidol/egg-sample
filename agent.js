@@ -1,7 +1,7 @@
 'use strict;'
 
 module.exports = agent => {
-  agent.logger.info('agent running..', app.config.env, app.baseDir, app.name);
+  agent.logger.info('agent running..', agent.config.env, agent.baseDir, agent.name);
 
   agent.mysql = require('./lib/mysql');
   agent.Joi = require('joi');
