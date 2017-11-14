@@ -49,6 +49,16 @@ module.exports = app => {
       // ignore: '', // 字符串/正则/函数
       threshold: 1
     },
+    db: {
+      eggsample: {
+        host: '192.168.2.117',
+        user: 'ciwong_sabin',
+        password: 'ciwong2017',
+        database: 'eggsample',
+        timezone: '+08:00',
+        connectionLimit: 10
+      }
+    },
     logger: {
       // encoding: 'utf8',
       dir: require('path').join(app.baseDir, 'logs/egg'),

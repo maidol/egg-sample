@@ -1,7 +1,7 @@
 'use strict;'
 
 module.exports = app => {
-  class HomeController extends app.Controller {
+  return class HomeController extends app.Controller {
     async index(ctx) {
       // const ctx = this.ctx;
       ctx.consoleLogger.info('hello world');
@@ -9,5 +9,4 @@ module.exports = app => {
       ctx.body = 'hello world';
     }
   }
-  return HomeController;
 };

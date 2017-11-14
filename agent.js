@@ -1,13 +1,21 @@
 'use strict;'
 
 module.exports = agent => {
+  agent.logger.info('agent running..');
+
+  agent.mysql = require('./lib/mysql');
+  agent.Joi = require('joi');
+
   agent.workerIds = []; // 可被分配的wid
   agent.workerPids = []; // alive pids
   agent.workers = {}; // 占位
   agent.eggReady = false; // 整个egg服务启动完成的标志
 
-  agent.logger.info('agent running..');
   agent.initCWAgent();
+
+  agent.beforeStart(async() => {
+    
+  });
 
   // 在这里写你的初始化逻辑
   // 也可以通过 messenger 对象发送消息给 App Worker

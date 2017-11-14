@@ -13,6 +13,38 @@ module.exports = {
   set cache(value) {
     this[CACHE] = value;
   },
+  dbpool(dbname) {
+    this._dbpool = this._dbpool || {};
+    if(!this._dbpool[dbname]){
+      this._dbpool[dbname] = this.mysql.createPool(this.config.db[dbname]);
+    }
+    return this._dbpool[dbname];
+  },
+  dbconn(dbname){
+    return this.dbpool(dbname).getConnection();
+  },
+  beginTransaction(dbname, promisecallback){
+    let conn;
+    return this.dbconn(dbname).then(connection=>{
+      conn = connection;
+      return conn.beginTransaction();
+    })
+    .then(()=>{
+      return promisecallback(conn);
+    })
+    .then((res)=>{
+      return conn.commit().then(()=>{
+        conn.release();
+        return res;
+      });
+    })
+    .catch(err=>{
+      return conn.rollback().then(()=>{
+        conn.release();
+        throw err;
+      });
+    });
+  },
   initCWApp(){
     const lconfig = this.config.cwLogger;
     lconfig.bunyan.categorys = Object.keys(lconfig.bunyan.categorys).map(k => lconfig.bunyan.categorys[k]);

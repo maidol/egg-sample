@@ -3,10 +3,11 @@
 module.exports = app => {
   app.logger.info('app running ...', app.config.env, app.baseDir, app.name);
 
+  app.mysql = require('./lib/mysql');
   app.Joi = require('joi');
 
   app.beforeStart(async() => {
-    app.cache = Promise.resolve('cache');
+    app.cache = await Promise.resolve({});
   });
 
   app.ready((err) => {

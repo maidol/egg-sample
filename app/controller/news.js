@@ -1,7 +1,7 @@
 'use strict;'
 
 module.exports = app => {
-  class NewsController extends app.Controller {
+  return class NewsController extends app.Controller {
     async list() {
       const ctx = this.ctx;
       const dataList = {
@@ -15,5 +15,4 @@ module.exports = app => {
       ctx.body = dataList;
     }
   }
-  return NewsController;
 };
