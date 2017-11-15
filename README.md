@@ -1,5 +1,5 @@
 ## cw egg-sample
-基于egg框架
+[基于egg框架](https://eggjs.org/zh-cn/)
 
 ## 启动
 ```bash
