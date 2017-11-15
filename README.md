@@ -98,8 +98,17 @@ npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plug
 {
   "extends": "standard",
   "rules": {
-    "semi": [ 0, "never"]
-    // "semi-spacing": 0
+    "semi": [ 2, "always"],
+    "semi-spacing": 1,
+    "space-before-function-paren": 0,
+    "no-trailing-spaces": 1,
+    "eol-last": 0,
+    "indent": [2, "tab"],
+    "comma-dangle": 0,
+    "curly": 0,
+    "spaced-comment": 1,
+    "no-tabs": 0,
+    "generator-star-spacing": 0
   }
 }
 ```
