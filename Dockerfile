@@ -1,4 +1,4 @@
-FROM node:8.7.0-alpine
+FROM node:8.9.0-alpine
 
 MAINTAINER maifuquan <maifuquan@ciwong.com>
 
@@ -27,4 +27,4 @@ VOLUME /var/app/logs
 
 EXPOSE 7001
 
-ENTRYPOINT egg-scripts start --workers=2
+ENTRYPOINT npm start

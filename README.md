@@ -1,17 +1,3 @@
-## cw egg-sample
-[基于egg框架](https://eggjs.org/zh-cn/)
-
-## 启动
-```bash
-npm run dev # 开发环境
-npm run test # 单元测试
-npm run cov # 代码覆盖率
-npm run start # 生产环境
-```
-
-## 调试
-vscode开发环境下, f5
-
 ## 对象
 ------
 ### - Application(Koa的全局应用对象) 

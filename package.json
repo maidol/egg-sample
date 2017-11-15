@@ -8,6 +8,7 @@
     "cov": "egg-bin cov",
     "debug": "egg-bin debug",
     "start": "egg-scripts start --workers=2",
+    "start4": "egg-scripts start --workers=4",
     "stop": "egg-scripts stop"
   },
   "author": "",
