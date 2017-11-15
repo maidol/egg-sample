@@ -113,6 +113,7 @@ npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plug
 }
 ```
 ```bash
+# 检查指定文件
 eslint index.js
 ```
 
