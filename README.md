@@ -90,7 +90,7 @@ function handleThings(opts = {}) {
 - eslint
 >>- 一个语法规则和代码风格的检查工具，可以用来保证写出语法正确、风格统一的代码
 ```bash
-npm i -g eslint
+npm install --save-dev eslint
 npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
 ```
 >>- 新建一个.eslintrc文件，配置 ESLint
