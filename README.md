@@ -1,7 +1,9 @@
 ## cw egg-sample
+------
 [基于egg框架](https://eggjs.org/zh-cn/)
 
 ## 启动
+------
 ```bash
 git clone https://github.com/maidol/egg-sample.git
 cd egg-sample
@@ -13,26 +15,23 @@ npm run start # 生产环境
 npm run hint # 检查语法
 ```
 
-## 组件
-- 日志组件[cw-logger](https://github.com/maidol/cw-logger)
-- 数据库[mysql](https://github.com/mysqljs/mysql)  
-mysql组件添加了promise的封装层, 调用 const [result, fields] = await pool.query(...) 方法返回的数据类型为数组
-- 数据校验[joi](https://github.com/hapijs/joi)
-
 ## 开发工具
-- vscode
-- 格式化插件 Beautify
-- 语法检查插件 ESLint
-- tab配置制表符大小为2, 缩进转换为tab制表符
+------
+- 安装vscode
+- 安装格式化插件 Beautify
+- 安装语法检查插件 ESLint
+- tab配置制表符大小为2, 并将缩进转换为tab制表符
 ```json
-// 在用户设置
+// 在用户设置默认
 {"editor.tabSize": 2}
 ```
 
 ## 调试
-vscode开发环境下, f5
+------
+vscode开发环境下, 按f5
 
 ## 一些代码规范风格 [es6](http://es6.ruanyifeng.com/#docs/style)
+------
 - 使用tab缩进, 设置制表符大小为2
 - 块级作用域
 >>- 使用let取代var
@@ -108,20 +107,34 @@ npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plug
 eslint index.js
 ```
 
-## 版本分支
+## git版本分支
+------
 - 项目目前暂未按严格的git工作流, 只分dev和master分支, dev开发, master发布
 
 ## git提交代码
-- 检查语法
+------
+- 添加必要的提交描述(功能, bug相关)
+- 先拉取, 检查语法, 再推送
 ```bash
+# 检查语法
 npm run hint
 ```
-- 必要的提交描述(功能, bug相关)
-- 先拉取再推送
 
 ## 框架相关简介
 整体基于egg, 此基础上集成常用的组件
 ------
+
+## 环境变量 NODE_ENV 
+------
+- NODE_ENV
+- EGG_SERVER_ENV
+
+## 组件
+------
+- 日志组件[cw-logger](https://github.com/maidol/cw-logger)
+- 数据库[mysql](https://github.com/mysqljs/mysql)  
+mysql组件添加了promise的封装层, 调用 const [result, fields] = await pool.query(...) 方法返回的数据类型为数组
+- 数据校验[joi](https://github.com/hapijs/joi)
 
 ## egg对象
 ------
@@ -136,15 +149,50 @@ npm run hint
 - Service  
 { ctx, app, config, logger, service }
 - Logger  
->>- cw日志对象, 应用日志统一记录在app.log文件  
+>>- [cw日志对象](https://github.com/maidol/cw-logger), 应用日志统一记录在app.log文件  
 { agent{ cwLogger, consoleLogger }, app{ cwLogger, consoleLogger }, context{ cwLogger, consoleLogger } }
 >>- egg日志对象, egg框架内置, 应用开发一般不会用到  
 { agent{ logger, coreLogger }, app{ logger, coreLogger }, context{ logger, coreLogger }}
-
-## 环境变量 NODE_ENV 
-------
-- NODE_ENV
-- EGG_SERVER_ENV
+- [mysql数据库](https://github.com/mysqljs/mysql)
+>>- 连接池
+```javascript
+const pool = app.dbpool('eggsample');
+const [rows, fields] = await pool.query('select * from user');
+```
+>>- 数据库事务
+```javascript
+const [insertResult, updateResult] = await app.beginTransaction('eggsample', async(tran) => {
+  let [insertResult] = await tran.query('insert into user set ?;', {
+    name: 'king1'
+  });
+  const sql = tran.format('update user set ? where ?;', [{
+    name: 'king3'
+  }, {
+    id: 13
+  }]);
+  let [updateResult] = await tran.query(sql);
+  return [insertResult, updateResult];
+});
+```
+- 参数校验
+>>- [app.Joi](https://github.com/hapijs/joi)
+参数校验统一放在路由层
+```javascript
+app.get('/validate', app.middlewares.validate({
+  // auth: false,
+  req: {
+    headers: app.Joi.object().unknown(),
+    body: app.Joi.object().unknown(),
+    query: {
+      account: app.Joi.string().example('12345678901').description('邮箱/手机号码').required(),
+      password: app.Joi.string().min(3).max(24).example('1234').description('密码').required()
+    }
+  },
+  // res: {
+  //   id: app.Joi.number().min(3).required()
+  // }
+}, app), app.controller.home.index);
+```
 
 ## 中间件级别
 ------
