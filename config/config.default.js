@@ -96,10 +96,10 @@ module.exports = app => {
     },
     db: {
       eggsample: {
-        host: '192.168.2.117',
-        user: 'ciwong_sabin',
-        password: 'ciwong2017',
-        database: 'eggsample',
+        host: 'xxxxxx',
+        user: 'xxxxxx',
+        password: 'xxxxxx',
+        database: 'xxxx',
         timezone: '+08:00',
         connectionLimit: 10
       }
