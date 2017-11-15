@@ -25,7 +25,7 @@ module.exports = {
     var result = {
       ret: apiCode.retCodeEnum.success,
       errcode: apiCode.errCodeEnum.success,
-      msg: "success"
+      msg: 'success'
     };
     if (_.isNumber(ret)) {
       result.ret = ret;
@@ -35,7 +35,7 @@ module.exports = {
     }
     result.msg = msg
     if (msg === undefined) {
-      result.msg = "success"
+      result.msg = 'success'
     }
     if (!Object.is(data, undefined)) {
       result.data = data;
@@ -44,7 +44,6 @@ module.exports = {
   },
   success(data) {
     this.body = this.buildReturnObject(apiCode.retCodeEnum.success, apiCode.errCodeEnum.success, 'success', data);
-    return;
   },
   error(msg, errCode = apiCode.errCodeEnum.apiError, retCode = apiCode.retCodeEnum.serverError) {
     throw Object.assign(new Error(msg || '接口口内部异常'), {

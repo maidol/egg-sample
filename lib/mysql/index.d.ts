@@ -7,67 +7,67 @@ export function createPool(config: mysql.PoolConfig | string): Pool;
 export { Types, escape, escapeId, format } from 'mysql';
 
 export interface QueryFunction {
-    (query: mysql.Query | string | mysql.QueryOptions): Promise<any>;
+	(query: mysql.Query | string | mysql.QueryOptions): Promise<any>;
 
-    (options: string, values: any): Promise<any>;
+	(options: string, values: any): Promise<any>;
 }
 
 export interface Connection {
-    query: QueryFunction;
+	query: QueryFunction;
 
-    beginTransaction(options?: mysql.QueryOptions): Promise<void>;
+	beginTransaction(options?: mysql.QueryOptions): Promise<void>;
 
-    commit(options?: mysql.QueryOptions): Promise<void>;
+	commit(options?: mysql.QueryOptions): Promise<void>;
 
-    rollback(options?: mysql.QueryOptions): Promise<void>;
+	rollback(options?: mysql.QueryOptions): Promise<void>;
 
-    changeUser(options?: mysql.QueryOptions): Promise<void>;
+	changeUser(options?: mysql.QueryOptions): Promise<void>;
 
-    ping(options?: mysql.QueryOptions): Promise<void>;
+	ping(options?: mysql.QueryOptions): Promise<void>;
 
-    statistics(options?: mysql.QueryOptions): Promise<void>;
+	statistics(options?: mysql.QueryOptions): Promise<void>;
 
-    end(options?: mysql.QueryOptions): Promise<void>;
+	end(options?: mysql.QueryOptions): Promise<void>;
 
-    destroy(): void;
+	destroy(): void;
 
-    pause(): void;
+	pause(): void;
 
-    resume(): void;
+	resume(): void;
 
-    escape(value: any, stringifyObjects?: boolean, timeZone?: string): string;
+	escape(value: any, stringifyObjects?: boolean, timeZone?: string): string;
 
-    escapeId(value: string, forbidQualified?: boolean): string;
+	escapeId(value: string, forbidQualified?: boolean): string;
 
-    format(sql: string, values: any[], stringifyObjects?: boolean, timeZone?: string): string;
+	format(sql: string, values: any[], stringifyObjects?: boolean, timeZone?: string): string;
 }
 
 export interface PoolConnection extends Connection {
-    release(): Promise<any>;
+	release(): Promise<any>;
 
-    destroy(): Promise<any>;
+	destroy(): Promise<any>;
 }
 
 export interface Pool {
-    getConnection(): Promise<PoolConnection>;
+	getConnection(): Promise<PoolConnection>;
 
-    releaseConnection(connection: PoolConnection): void;
+	releaseConnection(connection: PoolConnection): void;
 
-    query: QueryFunction;
+	query: QueryFunction;
 
-    end(options?: mysql.QueryOptions): Promise<void>;
+	end(options?: mysql.QueryOptions): Promise<void>;
 
-    release(options?: mysql.QueryOptions): Promise<void>;
+	release(options?: mysql.QueryOptions): Promise<void>;
 
-    escape(value: any, stringifyObjects?: boolean, timeZone?: string): string;
+	escape(value: any, stringifyObjects?: boolean, timeZone?: string): string;
 
-    escapeId(value: string, forbidQualified?: boolean): string;
+	escapeId(value: string, forbidQualified?: boolean): string;
 
-    on(ev: 'connection' | 'acquire' | 'release', callback: (connection: mysql.PoolConnection) => void): mysql.Pool;
+	on(ev: 'connection' | 'acquire' | 'release', callback: (connection: mysql.PoolConnection) => void): mysql.Pool;
 
-    on(ev: 'error', callback: (err: mysql.MysqlError) => void): mysql.Pool;
+	on(ev: 'error', callback: (err: mysql.MysqlError) => void): mysql.Pool;
 
-    on(ev: 'enqueue', callback: (err?: mysql.MysqlError) => void): mysql.Pool;
+	on(ev: 'enqueue', callback: (err?: mysql.MysqlError) => void): mysql.Pool;
 
-    on(ev: string, callback: (...args: any[]) => void): mysql.Pool;
+	on(ev: string, callback: (...args: any[]) => void): mysql.Pool;
 }

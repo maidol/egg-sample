@@ -9,7 +9,8 @@
     "debug": "egg-bin debug",
     "start": "egg-scripts start --workers=2",
     "start4": "egg-scripts start --workers=4",
-    "stop": "egg-scripts stop"
+    "stop": "egg-scripts stop",
+    "myhint": "eslint ./**/*"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +26,12 @@
   },
   "devDependencies": {
     "egg-bin": "^4.3.5",
-    "egg-mock": "^3.13.1"
+    "egg-mock": "^3.13.1",
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

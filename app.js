@@ -11,7 +11,8 @@ module.exports = app => {
     app.cache = await Promise.resolve({});
   });
 
-  app.ready((err) => {
+  app.ready(err => {
+    if (err) {}
     app.logger.info('hi, app, app.ready', process.pid);
     app.messenger.sendToAgent('app-readyfor-workerid', {
       pid: process.pid
@@ -29,7 +30,7 @@ module.exports = app => {
     // 设置workerId
     app.workerId = data;
     process.env.pm_id = data;
-    if(app.config.env === 'local'){
+    if (app.config.env === 'local') {
       app.workerId = undefined;
       delete process.env.pm_id;
     }

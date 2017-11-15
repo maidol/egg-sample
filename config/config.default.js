@@ -8,17 +8,6 @@ module.exports = app => {
       // path: '/var/run/egg.sock',
     },
     keys: '123456',
-    i18n: {
-      defaultLocale: 'zh-CN',
-      // 优先级从高到低
-      // query: /?locale=en-US
-      // cookie: locale=zh-TW
-      // header: Accept-Language: zh-CN,zh;q=0.5
-      queryField: 'locale',
-      cookieField: 'locale',
-      // Cookie 默认一年后过期， 如果设置为 Number，则单位为 ms
-      cookieMaxAge: '1y',
-    },
     view: {
       defaultViewEngine: 'nunjucks',
       mapping: {
@@ -58,6 +47,15 @@ module.exports = app => {
     },
     i18n: {
       enable: false,
+      defaultLocale: 'zh-CN',
+      // 优先级从高到低
+      // query: /?locale=en-US
+      // cookie: locale=zh-TW
+      // header: Accept-Language: zh-CN,zh;q=0.5
+      queryField: 'locale',
+      cookieField: 'locale',
+      // Cookie 默认一年后过期， 如果设置为 Number，则单位为 ms
+      cookieMaxAge: '1y',
     },
     securities: {
       enable: false, // 禁用所有默认安全中间件
@@ -84,7 +82,7 @@ module.exports = app => {
     errorHandler: {
       enable: false,
       match: '/api',
-    },    
+    },
     apiResponse: {
       enable: true,
     },
@@ -98,8 +96,8 @@ module.exports = app => {
       eggsample: {
         host: 'xxxxxxxxxxxxxxx',
         user: 'xxxxxxxxxxxxxxx',
-        password: 'xxxxxxxxxxx',
-        database: 'xxxxxxxxxxx',
+        password: 'xxxxxxxxxxxxxxx',
+        database: 'xxxxxxxxxxxxxxx',
         timezone: '+08:00',
         connectionLimit: 10
       }

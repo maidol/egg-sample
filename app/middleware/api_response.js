@@ -10,11 +10,12 @@ module.exports = (options, app) => {
           apiCode.errCodeEnum.notReturnData, 'success', null)
       }
     } catch (e) {
-      ctx.cwLogger.error(e,'current url -->>', ctx.url);
+      ctx.cwLogger.error(e, 'current url -->>', ctx.url);
 
-      if (e === undefined || e === null) {
-        e = new Error("未定义的错误")
-      }
+      // if (e === undefined || e === null) {
+      //   e = new Error('未定义的错误')
+      // }
+
       if (e.retCode === undefined) {
         e.retCode = apiCode.retCodeEnum.serverError
       }
@@ -22,7 +23,7 @@ module.exports = (options, app) => {
         e.errCode = apiCode.errCodeEnum.autoSnapError
       }
 
-      ctx.body = ctx.buildReturnObject(e.retCode, e.errCode, e.message || "系统繁忙...");
+      ctx.body = ctx.buildReturnObject(e.retCode, e.errCode, e.message || '系统繁忙...');
     }
   }
 };

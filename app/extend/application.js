@@ -6,7 +6,9 @@ module.exports = {
     // this 就是 app 对象，在其中可以调用 app 上的其他方法，或访问属性
     if (!this[CACHE]) {
       // 实际情况肯定更复杂
-      this[CACHE] = { name: 'cache' };
+      this[CACHE] = {
+        name: 'cache'
+      };
     }
     return this[CACHE];
   },
@@ -15,62 +17,63 @@ module.exports = {
   },
   dbpool(dbname) {
     this._dbpool = this._dbpool || {};
-    if(!this._dbpool[dbname]){
+    if (!this._dbpool[dbname]) {
       this._dbpool[dbname] = this.mysql.createPool(this.config.db[dbname]);
     }
     return this._dbpool[dbname];
   },
-  dbconn(dbname){
+  dbconn(dbname) {
     return this.dbpool(dbname).getConnection();
   },
-  beginTransaction(dbname, promisecallback){
+  beginTransaction(dbname, promisecallback) {
     let conn;
-    return this.dbconn(dbname).then(connection=>{
-      conn = connection;
-      return conn.beginTransaction();
-    })
-    .then(()=>{
-      return promisecallback(conn);
-    })
-    .then((res)=>{
-      return conn.commit().then(()=>{
-        conn.release();
-        return res;
+    return this.dbconn(dbname)
+      .then(connection => {
+        conn = connection;
+        return conn.beginTransaction();
+      })
+      .then(() => {
+        return promisecallback(conn);
+      })
+      .then((res) => {
+        return conn.commit().then(() => {
+          conn.release();
+          return res;
+        });
+      })
+      .catch(err => {
+        return conn.rollback().then(() => {
+          conn.release();
+          throw err;
+        });
       });
-    })
-    .catch(err=>{
-      return conn.rollback().then(()=>{
-        conn.release();
-        throw err;
-      });
-    });
   },
-  initCWApp(){
+  initCWApp() {
     const self = this;
     const lconfig = this.config.cwLogger;
     lconfig.bunyan.categorys = Object.keys(lconfig.bunyan.categorys).map(k => lconfig.bunyan.categorys[k]);
     const log = require('cw-logger')(lconfig);
     this.cwLog = log;
-  
-    this.config.cwLogger.bunyan.categorys.forEach(c=>{
+
+    this.config.cwLogger.bunyan.categorys.forEach(c => {
       let name = `${c.name}Logger`;
       this[name] = log[c.name];
     });
 
     this.cwLogger = log.app;
-  
+
     this.logger.info('init cw-app ...');
 
-    this.on('error', (err, ctx)=> {
-      self.cwLogger.error(err, "app-on-error事件:");
+    this.on('error', (err, ctx) => {
+      self.cwLogger.error(err, 'app-on-error事件');
     });
 
     process.on('unhandledRejection', function (err) {
-      self.cwLogger.error(err, "process-on-unhandledRejection事件:");
+      self.cwLogger.error(err, 'process-on-unhandledRejection事件');
     });
-    
+
     process.on('uncaughtException', function (err) {
-      self.cwLogger.error(err, "process-on-uncaughtException事件:");
+      self.cwLogger.error(err, 'process-on-uncaughtException事件');
     });
   }
 }

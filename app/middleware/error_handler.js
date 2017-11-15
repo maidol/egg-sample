@@ -9,7 +9,7 @@ module.exports = (options, app) => {
       ctx.body = {
         ret: apiCode.retCodeEnum.serverError,
         errcode: apiCode.errCodeEnum.autoSnapError,
-        msg: "系统繁忙..."
+        msg: '系统繁忙...'
       }
       ctx.cwLogger.error(e);
     }

@@ -13,11 +13,16 @@ module.exports = app => {
     }
     // subscribe 是真正定时任务执行时被运行的函数，ctx是一个匿名的 Context 实例
     async subscribe() {
-      const { ctx, app } = this;
+      const {
+        ctx,
+        app
+      } = this;
       // const res = yield this.ctx.curl('http://www.api.com/cache', {
       //   dataType: 'json',
       // });
-      const res = await Promise.resolve({ data: Date.now() });
+      const res = await Promise.resolve({
+        data: Date.now()
+      });
       ctx.app.cache = res;
       // ctx.logger.debug('UpdateCache', app.cache);
       // this.logger.debug('UpdateCache', app.cache);

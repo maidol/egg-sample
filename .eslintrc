@@ -1,7 +1,17 @@
 {
-	"extends": "standard",
-	"installedESLint": true,
-	"plugins": [
-		"standard"
-	]
+  // "extends": "eslint-config-airbnb"
+  // "extends": "eslint-config-egg"
+  "extends": "standard",
+  "rules": {
+    "semi": [ 0, "never"],
+    // "semi-spacing": 0
+    "space-before-function-paren": "off",
+    "no-trailing-spaces": 0,
+    "eol-last": 0,
+    "indent": 0,
+    "comma-dangle": 0,
+    "curly": 0,
+    "spaced-comment": 0,
+    "no-tabs": 0
+  }
 }

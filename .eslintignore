@@ -1,1 +1,7 @@
 coverage
+run
+.vscode
+.dockerignore
+.gitignore
+Dockerfile
+readme.md
