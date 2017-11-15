@@ -1,5 +1,5 @@
-'use strict;'
+'use strict';
 
 module.exports = {
-  mockXX(k, v) {}
+	mockXX(k, v) {}
 };

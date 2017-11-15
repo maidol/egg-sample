@@ -3,16 +3,31 @@
 
 ## 启动
 ```bash
+git clone https://github.com/maidol/egg-sample.git
+cd egg-sample
+npm i # 安装依赖
 npm run dev # 开发环境
 npm run test # 单元测试
 npm run cov # 代码覆盖率
 npm run start # 生产环境
+npm run hint # 检查语法
 ```
+
 ## 组件
 - 日志组件[cw-logger](https://github.com/maidol/cw-logger)
 - 数据库[mysql](https://github.com/mysqljs/mysql)  
 mysql组件添加了promise的封装层, 调用 const [result, fields] = await pool.query(...) 方法返回的数据类型为数组
 - 数据校验[joi](https://github.com/hapijs/joi)
+
+## 开发工具
+- vscode
+- 格式化插件 Beautify
+- 语法检查插件 ESLint
+- tab配置制表符大小为2, 缩进转换为tab制表符
+```json
+// 在用户设置
+{"editor.tabSize": 2}
+```
 
 ## 调试
 vscode开发环境下, f5
@@ -92,6 +107,21 @@ npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plug
 ```bash
 eslint index.js
 ```
+
+## 版本分支
+- 项目目前暂未按严格的git工作流, 只分dev和master分支, dev开发, master发布
+
+## git提交代码
+- 检查语法
+```bash
+npm run hint
+```
+- 必要的提交描述(功能, bug相关)
+- 先拉取再推送
+
+## 框架相关简介
+整体基于egg, 此基础上集成常用的组件
+------
 
 ## egg对象
 ------

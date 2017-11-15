@@ -1,5 +1,5 @@
 module.exports = {
-  get q() {
-    return 'q'
-  }
-}
+	get q() {
+		return 'q';
+	}
+};

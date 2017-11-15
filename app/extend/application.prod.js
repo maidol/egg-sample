@@ -1,5 +1,5 @@
-'use strict;'
+'use strict';
 
 module.exports = {
-  prod(k, v) {}
+	prod(k, v) {}
 };
