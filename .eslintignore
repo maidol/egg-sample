@@ -7,3 +7,7 @@ test
 .gitignore
 Dockerfile
 readme.md
+public
+view
+*.json
+*.d.ts
