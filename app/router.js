@@ -1,7 +1,7 @@
 'use strict;'
 
 module.exports = app => {
-  app.get('/', app.controller.home.index);
+  app.get('/', app.middlewares.validate({}, app), app.controller.home.index);
   app.get('/hello', app.controller.home.hello);
   app.get('/validate', app.middlewares.validate({
     // auth: false,
