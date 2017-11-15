@@ -12,6 +12,7 @@
     "comma-dangle": 0,
     "curly": 0,
     "spaced-comment": 0,
-    "no-tabs": 0
+    "no-tabs": 0,
+    "generator-star-spacing": 0
   }
 }

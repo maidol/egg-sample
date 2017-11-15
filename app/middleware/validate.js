@@ -29,7 +29,7 @@ module.exports = (options, app) => {
     if (ctx.body instanceof Object && options.res) {
       const {
         error,
-        value
+        // value
       } = ctx.app.Joi.validate(ctx.body, options.res);
       if (error) {
         // let message = error.details[0].message;

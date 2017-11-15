@@ -1,5 +1,7 @@
+logs
 coverage
 run
+test
 .vscode
 .dockerignore
 .gitignore

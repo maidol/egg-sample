@@ -1,6 +1,10 @@
 'use strict;'
 
-const { app, mock, assert } = require('egg-mock/bootstrap');
+const {
+  app,
+  // mock,
+  assert
+} = require('egg-mock/bootstrap');
 describe('test/app/service/mock.test.js', () => {
   before(() => {
     return app.ready(app.initCWApp.bind(app)); // app启动后初始化cwapp

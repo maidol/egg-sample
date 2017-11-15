@@ -1,6 +1,6 @@
 'use strict;'
 
-const assert = require('assert');
+// const assert = require('assert');
 const mock = require('egg-mock');
 describe('test/app/middleware/robot.test.js', () => {
   let app;
@@ -14,7 +14,7 @@ describe('test/app/middleware/robot.test.js', () => {
   it('should block robot', () => {
     return app.httpRequest()
       .get('/')
-      .set('User-Agent', "Baiduspider")
+      .set('User-Agent', 'Baiduspider')
       .expect(403);
   });
   // ...

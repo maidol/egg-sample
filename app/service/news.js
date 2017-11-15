@@ -19,12 +19,13 @@ module.exports = app => {
         },
         dataType: 'json'
       });
-      // const newsList = await Object.keys(idList).map(key => {
-      //   const url = `${serverUrl}/item/${idList[key]}.json`;
-      //   return ctx.curl(url, {
-      //     dataType: 'json'
-      //   });
-      // });
+      const newsList = await Object.keys(idList).map(key => {
+        const url = `${serverUrl}/item/${idList[key]}.json`;
+        return ctx.curl(url, {
+          dataType: 'json'
+        });
+      });
+      ctx.cwLogger.info(newsList);
     }
   }
   return NewsService;
