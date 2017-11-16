@@ -43,7 +43,6 @@ module.exports = {
 			}));
 	},
 	initCWApp() {
-		const self = this;
 		const lconfig = this.config.cwLogger;
 		const cs = lconfig.bunyan.categorys;
 		lconfig.bunyan.categorys = Object.keys(cs).map(k => cs[k]);
@@ -60,15 +59,15 @@ module.exports = {
 		this.logger.info('init cw-app ...');
 
 		this.on('error', (err, ctx) => {
-			self.cwLogger.error(err, 'app-on-error事件');
+			this.cwLogger.error(err, 'app-on-error事件');
 		});
 
 		process.on('unhandledRejection', (err) => {
-			self.cwLogger.error(err, 'process-on-unhandledRejection事件');
+			this.cwLogger.error(err, 'process-on-unhandledRejection事件');
 		});
 
 		process.on('uncaughtException', (err) => {
-			self.cwLogger.error(err, 'process-on-uncaughtException事件');
+			this.cwLogger.error(err, 'process-on-uncaughtException事件');
 		});
 	}
 };

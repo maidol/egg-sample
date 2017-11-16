@@ -6,11 +6,9 @@ module.exports = {
 		return 'test logger';
 	},
 	promiseCallback(functionName, params) {
-		const self = this;
-		params = Array.prototype.slice.call(params, 0);
+		const targs = Array.prototype.slice.call(params, 0);
 		return new Promise(((resolve, reject) => {
-			params.push((err, ...args) => {
-				// const args = Array.prototype.slice.call(arguments, 1);
+			targs.push((err, ...args) => {
 				if (err) {
 					return reject(err);
 				}
@@ -18,7 +16,7 @@ module.exports = {
 				return resolve.apply(this, [args]);
 			});
 
-			self[functionName](...params).bind(self);
+			this[functionName](...targs);
 		}));
 	}
 };

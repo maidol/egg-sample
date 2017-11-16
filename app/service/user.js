@@ -26,7 +26,6 @@ module.exports = app => class User extends app.Service {
 				return [insertResult, updateResult];
 			});
 			return [rows, fields, insertResult, updateResult];
-			// return result;
 		} catch (error) {
 			throw error;
 		}
