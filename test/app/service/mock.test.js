@@ -1,14 +1,11 @@
-'use strict;'
-
 const {
   app,
   // mock,
   assert
 } = require('egg-mock/bootstrap');
+
 describe('test/app/service/mock.test.js', () => {
-  before(() => {
-    return app.ready(app.initCWApp.bind(app)); // app启动后初始化cwapp
-  });
+  before(() => app.ready(app.initCWApp.bind(app))); // app启动后初始化cwapp
   describe('get()', () => {
     // 因为需要异步调用，所以使用 async function
     it('should get exists user', async() => {

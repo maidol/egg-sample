@@ -1,5 +1,3 @@
-'use strict';
-
 const _ = require('lodash');
 const apiCode = require('../../lib/api_code_enum');
 
@@ -22,7 +20,7 @@ module.exports = {
 		return this.app[name];
 	},
 	buildReturnObject(ret, errCode, msg, data) {
-		var result = {
+		const result = {
 			ret: apiCode.retCodeEnum.success,
 			errcode: apiCode.errCodeEnum.success,
 			msg: 'success'
@@ -31,7 +29,7 @@ module.exports = {
 			result.ret = ret;
 		}
 		if (_.isNumber(errCode)) {
-			result.errcode = parseInt(errCode);
+			result.errcode = parseInt(errCode, 10);
 		}
 		result.msg = msg;
 		if (msg === undefined) {
@@ -47,7 +45,7 @@ module.exports = {
 	},
 	error(msg, errCode = apiCode.errCodeEnum.apiError, retCode = apiCode.retCodeEnum.serverError) {
 		throw Object.assign(new Error(msg || '接口口内部异常'), {
-			retCode: retCode,
+			retCode,
 			errCode: _.isNumber(errCode) ? errCode : apiCode.errCodeEnum.apiError
 		});
 	},

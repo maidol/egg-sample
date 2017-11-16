@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
 	formatTime(time) {
 		return 'formatTime';
@@ -8,11 +6,11 @@ module.exports = {
 		return 'test logger';
 	},
 	promiseCallback(functionName, params) {
-		let self = this;
+		const self = this;
 		params = Array.prototype.slice.call(params, 0);
-		return new Promise(function (resolve, reject) {
-			params.push(function (err) {
-				let args = Array.prototype.slice.call(arguments, 1);
+		return new Promise(((resolve, reject) => {
+			params.push((err, ...args) => {
+				// const args = Array.prototype.slice.call(arguments, 1);
 				if (err) {
 					return reject(err);
 				}
@@ -20,7 +18,7 @@ module.exports = {
 				return resolve.apply(this, [args]);
 			});
 
-			self[functionName].apply(self, params);
-		});
+			self[functionName](...params).bind(self);
+		}));
 	}
 };

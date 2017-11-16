@@ -39,8 +39,8 @@ vscode开发环境下, 按f5
 - 字符串
 >>- 静态字符串一律使用单引号或反引号，不使用双引号。动态字符串使用反引号
 - 解构赋值
-- 数组
->>- 使用扩展运算符（...）拷贝数组
+- 数组  
+>>- 使用扩展运算符(...)拷贝数组  
 ```javascript
 // bad
 const len = items.length;
@@ -50,11 +50,10 @@ let i;
 for (i = 0; i < len; i++) {
   itemsCopy[i] = items[i];
 }
-
 // good
 const itemsCopy = [...items];
 ```
-- 函数
+- 函数  
 >>- 尽量用箭头函数代替。因为这样更简洁，而且绑定了 this。箭头函数取代Function.prototype.bind，不应再用 self/_this/that 绑定 this
 ```javascript
 const obj = {
@@ -77,7 +76,6 @@ obj.t1();
 function handleThings(opts) {
   opts = opts || {};
 }
-
 // good
 function handleThings(opts = {}) {
   // ...
@@ -87,13 +85,14 @@ function handleThings(opts = {}) {
 >>- 总是用 Class，取代需要 prototype 的操作
 - import/export, 目前此框架未支持此语法特性
 - 安装格式化工具 js-beautify for VS Code
-- eslint
+- [ESLint](https://eslint.org/)
 >>- 一个语法规则和代码风格的检查工具，可以用来保证写出语法正确、风格统一的代码
+>>- [airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base)
 ```bash
 npm install --save-dev eslint
-npm install --save-dev eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+npm install --save-dev eslint-config-airbnb-base eslint-plugin-import
 ```
->>- 新建一个.eslintrc文件，配置 ESLint
+>>- 新建一个.eslintrc文件，配置[ESLint](https://eslint.org/)
 ```javascript
 {
   "extends": "standard",

@@ -1,4 +1,4 @@
-'use strict';
+const cwlogCreator = require('cw-logger');
 
 module.exports = {
 	proxy(k, v) {
@@ -17,25 +17,19 @@ module.exports = {
 	beginTransaction(dbname, promisecallback) {
 		let conn;
 		return this.dbconn(dbname)
-			.then(connection => {
+			.then((connection) => {
 				conn = connection;
 				return conn.beginTransaction();
 			})
-			.then(() => {
-				return promisecallback(conn);
-			})
-			.then((res) => {
-				return conn.commit().then(() => {
-					conn.release();
-					return res;
-				});
-			})
-			.catch(err => {
-				return conn.rollback().then(() => {
-					conn.release();
-					throw err;
-				});
-			});
+			.then(() => promisecallback(conn))
+			.then(res => conn.commit().then(() => {
+				conn.release();
+				return res;
+			}))
+			.catch(err => conn.rollback().then(() => {
+				conn.release();
+				throw err;
+			}));
 	},
 	initCWAgent() {
 		const self = this;
@@ -48,12 +42,13 @@ module.exports = {
 				}
 			}
 		}
-		lconfig.bunyan.categorys = Object.keys(lconfig.bunyan.categorys).map(k => lconfig.bunyan.categorys[k]);
-		const log = require('cw-logger')(lconfig);
+		const cs = lconfig.bunyan.categorys;
+		lconfig.bunyan.categorys = Object.keys(cs).map(k => cs[k]);
+		const log = cwlogCreator(lconfig);
 		this.cwLog = log;
 
-		lconfig.bunyan.categorys.forEach(c => {
-			let name = `${c.name}Logger`;
+		lconfig.bunyan.categorys.forEach((c) => {
+			const name = `${c.name}Logger`;
 			this[name] = log[c.name];
 		});
 
@@ -65,11 +60,11 @@ module.exports = {
 			self.cwLogger.error(err, 'app-on-error事件');
 		});
 
-		process.on('unhandledRejection', function (err) {
+		process.on('unhandledRejection', (err) => {
 			self.cwLogger.error(err, 'process-on-unhandledRejection事件');
 		});
 
-		process.on('uncaughtException', function (err) {
+		process.on('uncaughtException', (err) => {
 			self.cwLogger.error(err, 'process-on-uncaughtException事件');
 		});
 	}

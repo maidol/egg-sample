@@ -1,12 +1,8 @@
-'use strict';
-
-module.exports = app => {
-	return {
-		robot: {
-			ua: [
-				/sina/i,
-				/Baiduspider/i
-			]
-		}
-	};
-};
+module.exports = app => ({
+	robot: {
+		ua: [
+			/sina/i,
+			/Baiduspider/i
+		]
+	}
+});

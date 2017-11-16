@@ -1,7 +1,6 @@
-'use strict;'
-
 // const assert = require('assert');
 const mock = require('egg-mock');
+
 describe('test/app/middleware/robot.test.js', () => {
   let app;
   before(() => {
@@ -11,11 +10,9 @@ describe('test/app/middleware/robot.test.js', () => {
     return app.ready(app.initCWApp.bind(app)); // app启动后初始化cwapp
   });
   afterEach(mock.restore);
-  it('should block robot', () => {
-    return app.httpRequest()
-      .get('/')
-      .set('User-Agent', 'Baiduspider')
-      .expect(403);
-  });
+  it('should block robot', () => app.httpRequest()
+    .get('/')
+    .set('User-Agent', 'Baiduspider')
+    .expect(403));
   // ...
 });

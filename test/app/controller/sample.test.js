@@ -1,5 +1,3 @@
-'use strict;'
-
 const assert = require('assert');
 const mock = require('egg-mock');
 // const { app, mock, assert } = require('egg-mock/bootstrap');
@@ -40,19 +38,17 @@ describe('test/app/controller/sample.test.js', () => {
   });
 
   // 使用返回 Promise 的方式
-  it('should redirect promise', () => {
-    return app.httpRequest()
-      .get('/')
-      .expect(200);
-  });
+  it('should redirect promise', () => app.httpRequest()
+    .get('/')
+    .expect(200));
   // 使用 callback 的方式
-  it('should redirect callback', done => {
+  it('should redirect callback', (done) => {
     app.httpRequest()
       .get('/')
       .expect(200, done);
   });
   // 使用 generator
-  it('should redirect generator', function* () {
+  it('should redirect generator', function* g() {
     yield app.httpRequest()
       .get('/')
       .expect(200);
