@@ -212,6 +212,7 @@ mysql组件添加了promise的封装层, 调用 const [result, fields] = await p
 { agent{ logger, coreLogger }, app{ logger, coreLogger }, context{ logger, coreLogger }}
 
 - [mysql数据库](https://github.com/mysqljs/mysql)
+
 连接池
 
 ```javascript
