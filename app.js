@@ -1,4 +1,4 @@
-const mysql = require('./lib/mysql');
+const mysql = require('promise-mysql2');
 const Joi = require('joi');
 const apiCode = require('./lib/api_code_enum');
 

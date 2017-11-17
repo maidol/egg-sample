@@ -24,7 +24,7 @@
     "koa-compress": "^2.0.0",
     "koa-is-json": "^1.0.0",
     "lodash": "^4.17.4",
-    "mysql": "^2.15.0"
+    "promise-mysql2": "^1.0.0"
   },
   "devDependencies": {
     "egg-bin": "^4.3.5",
