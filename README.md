@@ -1,5 +1,7 @@
 ## cw egg-sample
 ------
+node >= v8.9.0 lts
+
 [基于egg框架](https://eggjs.org/zh-cn/)
 
 ## 启动
